@@ -6,6 +6,7 @@ import uuid
 import datetime
 import time
 
+
 class BaseModel:
     """
     class BaseModel that defines all common attributes/methods
@@ -21,14 +22,19 @@ class BaseModel:
         print("id", self.id)
 
     def Date(self):
+        """return de date and time in isoformat"""
         Date = datetime.datetime.now()
         DateTime_in_ISOFormat = Date.isoformat()
         return(DateTime_in_ISOFormat)
 
     def __str__(self):
+        """[<class name>] (<self.id>) <self.__dict__>"""
         return ("[{}] ({}) {}".format(self.__class__.__name__,
                                       self.id, self.__dict__))
+
     def save(self):
+        """updates the public instance attribute updated_at
+        with the current datetime"""
         self.updated_at = str(BaseModel.Date(self))
 
     def to_dict(self):
