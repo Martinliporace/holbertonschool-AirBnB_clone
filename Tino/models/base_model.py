@@ -17,8 +17,8 @@ class BaseModel:
         """init"""
 
         self.id = str(uuid.uuid4())
-        self.created_at = str(BaseModel.Date(self))
-        self.updated_at = str(BaseModel.Date(self))
+        self.created_at = datetime.datetime.now()
+        self.updated_at = datetime.datetime.now()
         print("id", self.id)
 
     def Date(self):
