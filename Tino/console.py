@@ -8,20 +8,21 @@ from models.city import City
 from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
+from models.engine.file_storage import FileStorage
 
 class HBNBCommand(cmd.Cmd):
     """Defines the Holberton command interpreter"""
 
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
 
     __classes = {
-            "BaseModel",
-            "User",
-            "State",
-            "City",
-            "Place",
-            "Amenity",
-            "Review"
+            "BaseModel": BaseModel,
+            "User": User,
+            "State": State,
+            "City": City,
+            "Place": Place,
+            "Amenity": Amenity,
+            "Review": Review
             }
 
     def emptyline(self):
@@ -39,14 +40,15 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """Create a new class instance and print its id"""
-        argl = parse(arg)
-        if len(argl) == 0:
+        if len(arg) == 0:
             print("** class name missing **")
-        elif argl[0] not in HBNBCommand.__classes:
+        elif arg not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
-            print(eval(argl[0])().id)
-            storage.save()
+            print(eval(arg)().id)
+            BaseModel.save(self)
+
+
 
     def do_show(self, arg):
         """Display the string representation of a class instance of a given id
