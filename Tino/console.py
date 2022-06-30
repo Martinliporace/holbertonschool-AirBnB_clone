@@ -51,9 +51,22 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arg):
         """Display the string representation of a class instance of a given id
         """
-        key = arg.split()[0]+'.'+arg.split()[1]
-        aux = FileStorage.all(self)
-        print (aux[key])
+        if len(arg) == 0:
+            print ('** class name missing **')
+        args = arg.split()
+        if len(args) == 1 and args[0] not in HBNBCommand.__classes:
+            print ("** class doesn't exist **")
+        elif len(args) == 1 and args[0] in HBNBCommand.__classes:
+            print ('** instance id missing **')
+        elif len(args) == 2 and args[0] in HBNBCommand.__classes:
+            cl = args[0]
+            id = args[1]
+            key = cl+'.'+id
+            aux = FileStorage.all(self)
+            if key not in aux:
+                print ('** no instance found **')
+            else:    
+                print (aux[key])
 
 
     def do_destroy(self, arg):
