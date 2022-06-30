@@ -9,6 +9,7 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 from models.engine.file_storage import FileStorage
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """Defines the Holberton command interpreter"""
@@ -27,14 +28,17 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """Do nothing receiving an empty line"""
+
         pass
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
+
         sys.exit()
 
     def do_EOF(self, arg):
         """EOF signal to exit the program"""
+
         print("")
         return True
 
@@ -71,8 +75,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """Delete a class instance of a given id"""
-        argl = parse(arg)
-        objdict = storage.all()
+
+        argl = arg.split()
+        objdict = FileStorage.all(self)
         if len(argl) == 0:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.__classes:
@@ -83,7 +88,27 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         else:
             del objdict["{}.{}".format(argl[0], argl[1])]
-            storage.save()
+            FileStorage.save(self)
 
+    def do_all(self, arg):
+        """Prints all string representation of all instances
+        based or not on the class name"""
+
+        objdict = FileStorage.all(self)
+        obj_list = []
+        if len(arg) > 0:
+            if arg not in HBNBCommand.__classes:
+                print ("** class doesn't exist **")
+            else:
+                for item in objdict:
+                    key = (item.split(sep='.'))[0]
+                    if key == arg:
+                        obj_list.append(str(objdict[item]))
+                print (obj_list)
+        else:
+            for item in objdict:
+                obj_list.append(str(objdict[item]))
+            print (obj_list)
+                
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
