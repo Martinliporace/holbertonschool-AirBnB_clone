@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print(eval(arg)().id)
-            BaseModel.save(self)
+            storage.save()
 
     def do_show(self, arg):
         """Display the string representation of a class instance of a given id
@@ -88,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         else:
             del objdict["{}.{}".format(argl[0], argl[1])]
-            FileStorage.save(self)
+            storage.save()
 
     def do_all(self, arg):
         """Prints all string representation of all instances
@@ -141,7 +141,7 @@ class HBNBCommand(cmd.Cmd):
                              key = cl_name+'.'+id_name
                              if key in objdict:
                                  setattr(objdict[key], args[2], args[3]) 
-                                 FileStorage.save(self)
+                                 storage.save()
                              else:
                                  print ("** no instance found **")
 
@@ -154,8 +154,21 @@ class HBNBCommand(cmd.Cmd):
                 HBNBCommand.do_all(self, comm[0])
             else:
                 print("*** Invalid class: "+comm[0])
+
+        elif(".count()") in arg:
+            cont = 0
+            comm = arg.split(".count()")
+            if comm[0] in HBNBCommand.__classes:
+                objdict = FileStorage.all(self)
+                for i in objdict:
+                    if comm[0] in i:
+                        cont += 1
+                print (cont)
+            else:
+                print("*** Invalid class: "+comm[0])
         else:
             print("*** Unknown syntax: "+arg)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
