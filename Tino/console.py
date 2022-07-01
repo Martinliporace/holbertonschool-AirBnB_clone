@@ -145,5 +145,17 @@ class HBNBCommand(cmd.Cmd):
                              else:
                                  print ("** no instance found **")
 
+    def default(self, arg):
+        """ retrieve all instances of a class by using: <class name>.all()"""
+
+        if (".all()") in arg:
+            comm = arg.split(".all()")
+            if comm[0] in HBNBCommand.__classes:
+                HBNBCommand.do_all(self, comm[0])
+            else:
+                print("*** Invalid class: "+comm[0])
+        else:
+            print("*** Unknown syntax: "+arg)
+
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
