@@ -145,7 +145,7 @@ class HBNBCommand(cmd.Cmd):
                             at_val = args[3]
                             key = cl_name+'.'+id_name
                             if key in objdict:
-                                setattr(objdict[key], args[2], args[3])
+                                setattr(objdict[key], at_name, at_val)
                                 storage.save()
 
     def default(self, arg):
@@ -153,7 +153,7 @@ class HBNBCommand(cmd.Cmd):
 
         if (".all") in arg:
             cl = arg.split(".all()")
-            if comm[0] in HBNBCommand.__classes:
+            if cl[0] in HBNBCommand.__classes:
                 HBNBCommand.do_all(self, cl[0])
             else:
                 print("*** Invalid class: "+cl[0])
