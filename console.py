@@ -133,6 +133,8 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     id_name = args[1]
                     key = cl_name+'.'+id_name
+                    if key not in objdict:
+                        print("** no instance found **")
                     if args_len == 2:
                         print("** attribute name missing **")
                     else:
@@ -145,8 +147,6 @@ class HBNBCommand(cmd.Cmd):
                             if key in objdict:
                                 setattr(objdict[key], args[2], args[3])
                                 storage.save()
-                            else:
-                                print("** no instance found **")
 
     def default(self, arg):
         """ retrieve all instances of a class by using: <class name>.all()"""
