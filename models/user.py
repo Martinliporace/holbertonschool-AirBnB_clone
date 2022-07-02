@@ -3,6 +3,7 @@
 from models.base_model import BaseModel
 import models
 
+
 class User(BaseModel):
     """Represent a User Attributes:
     email + password + first name +
