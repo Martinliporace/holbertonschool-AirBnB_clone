@@ -8,10 +8,8 @@ class State(BaseModel):
     Attributes:
         name (str)"""
 
-
     name = ""
 
-    
     def __init__(self, *args, **kwargs):
         """ class constructor """
 
