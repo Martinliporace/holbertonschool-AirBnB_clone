@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Defines the console."""
-import cmd, sys
+
+import cmd
+import sys
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -10,6 +12,7 @@ from models.amenity import Amenity
 from models.review import Review
 from models.engine.file_storage import FileStorage
 from models import storage
+
 
 class HBNBCommand(cmd.Cmd):
     """Defines the Holberton command interpreter"""
@@ -56,22 +59,21 @@ class HBNBCommand(cmd.Cmd):
         """Display the string representation of a class instance of a given id
         """
         if len(arg) == 0:
-            print ('** class name missing **')
+            print('** class name missing **')
         args = arg.split()
         if len(args) == 1 and args[0] not in HBNBCommand.__classes:
-            print ("** class doesn't exist **")
+            print("** class doesn't exist **")
         elif len(args) == 1 and args[0] in HBNBCommand.__classes:
-            print ('** instance id missing **')
+            print('** instance id missing **')
         elif len(args) == 2 and args[0] in HBNBCommand.__classes:
             cl = args[0]
             id = args[1]
             key = cl+'.'+id
             aux = FileStorage.all(self)
             if key not in aux:
-                print ('** no instance found **')
-            else:    
-                print (aux[key])
-
+                print('** no instance found **')
+            else:
+                print(aux[key])
 
     def do_destroy(self, arg):
         """Delete a class instance of a given id"""
@@ -98,17 +100,17 @@ class HBNBCommand(cmd.Cmd):
         obj_list = []
         if len(arg) > 0:
             if arg not in HBNBCommand.__classes:
-                print ("** class doesn't exist **")
+                print("** class doesn't exist **")
             else:
                 for item in objdict:
                     key = (item.split(sep='.'))[0]
                     if key == arg:
                         obj_list.append(str(objdict[item]))
-                print (obj_list)
+                print(obj_list)
         else:
             for item in objdict:
                 obj_list.append(str(objdict[item]))
-            print (obj_list)
+            print(obj_list)
 
     def do_update(self, arg):
         """Updates an instance based on the class name and
@@ -119,31 +121,31 @@ class HBNBCommand(cmd.Cmd):
         objdict = FileStorage.all(self)
 
         if args_len == 0:
-            print ("** class name missing **")
+            print("** class name missing **")
         else:
             cl_name = args[0]
             if cl_name not in HBNBCommand.__classes:
-                print ("** class doesn't exist **")
+                print("** class doesn't exist **")
             else:
                 if args_len == 1:
-                    print ("** instance id missing **")
+                    print("** instance id missing **")
                 else:
                     id_name = args[1]
                     key = cl_name+'.'+id_name
                     if args_len == 2:
-                        print ("** attribute name missing **")
+                        print("** attribute name missing **")
                     else:
                         at_name = args[2]
                         if args_len == 3:
-                            print ("** value missing **")
+                            print("** value missing **")
                         else:
-                             at_val = args [3]
-                             key = cl_name+'.'+id_name
-                             if key in objdict:
-                                 setattr(objdict[key], args[2], args[3]) 
-                                 storage.save()
-                             else:
-                                 print ("** no instance found **")
+                            at_val = args[3]
+                            key = cl_name+'.'+id_name
+                            if key in objdict:
+                                setattr(objdict[key], args[2], args[3])
+                                storage.save()
+                            else:
+                                print("** no instance found **")
 
     def default(self, arg):
         """ retrieve all instances of a class by using: <class name>.all()"""
@@ -163,7 +165,7 @@ class HBNBCommand(cmd.Cmd):
                 for i in objdict:
                     if cl[0] in i:
                         cont += 1
-                print (cont)
+                print(cont)
             else:
                 print("*** Invalid class: "+cl[0])
 
