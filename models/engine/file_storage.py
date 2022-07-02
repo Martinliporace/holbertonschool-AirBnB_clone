@@ -2,7 +2,7 @@
 """FileStorage class"""
 
 import json
-import os
+from os.path import exists
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -39,7 +39,9 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path) as f:
                 aux = json.load(f)
-                for key, value in aux.items():
-                    self.__objects[key]=eval(value["__class__"])("value")
+                for o in aux.values():
+                    cls_name = o["__class__"]
+                    del o["__class__"]
+                    self.new(eval(cls_name)(**o))
         except FileNotFoundError:
             return
