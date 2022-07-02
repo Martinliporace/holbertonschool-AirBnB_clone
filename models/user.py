@@ -9,7 +9,6 @@ class User(BaseModel):
     email + password + first name +
     last name"""
 
-
     email = ""
     password = ""
     first_name = ""
