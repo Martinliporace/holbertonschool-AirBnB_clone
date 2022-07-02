@@ -148,24 +148,46 @@ class HBNBCommand(cmd.Cmd):
     def default(self, arg):
         """ retrieve all instances of a class by using: <class name>.all()"""
 
-        if (".all()") in arg:
-            comm = arg.split(".all()")
+        if (".all") in arg:
+            cl = arg.split(".all()")
             if comm[0] in HBNBCommand.__classes:
-                HBNBCommand.do_all(self, comm[0])
+                HBNBCommand.do_all(self, cl[0])
             else:
-                print("*** Invalid class: "+comm[0])
+                print("*** Invalid class: "+cl[0])
 
-        elif(".count()") in arg:
+        elif(".count") in arg:
             cont = 0
-            comm = arg.split(".count()")
-            if comm[0] in HBNBCommand.__classes:
+            cl = arg.split(".count()")
+            if cl[0] in HBNBCommand.__classes:
                 objdict = FileStorage.all(self)
                 for i in objdict:
-                    if comm[0] in i:
+                    if cl[0] in i:
                         cont += 1
                 print (cont)
             else:
-                print("*** Invalid class: "+comm[0])
+                print("*** Invalid class: "+cl[0])
+
+        elif(".show") in arg:
+            cl = str(arg.split(".show")[0])
+            id = str((arg.split("(")[1]).split(")")[0])
+            parameter = cl+' '+id
+            HBNBCommand.do_show(self, parameter)
+
+        elif(".destroy") in arg:
+            cl = str(arg.split(".destroy")[0])
+            id = str((arg.split("(")[1]).split(")")[0])
+            parameter = cl+' '+id
+            HBNBCommand.do_destroy(self, parameter)
+
+        elif(".update") in arg:
+            cl = str(arg.split(".update")[0])
+            bet_par = str((arg.split("(")[1]).split(")")[0])
+            id = str(bet_par.split(",")[0])
+            att_name = str(bet_par.split(",")[1])
+            att_val = str(bet_par.split(",")[2])
+            parameter = cl+' '+id+' '+att_name+' '+att_val
+            HBNBCommand.do_update(self, parameter)
+
         else:
             print("*** Unknown syntax: "+arg)
 
