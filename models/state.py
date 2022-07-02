@@ -9,4 +9,10 @@ class State(BaseModel):
         name (str)"""
 
 
-name = ""
+    name = ""
+
+    
+    def __init__(self, *args, **kwargs):
+        """ class constructor """
+
+        super().__init__(*args, **kwargs)
