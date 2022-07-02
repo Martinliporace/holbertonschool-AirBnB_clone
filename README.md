@@ -3,11 +3,11 @@
 # AirBnB clone - The console
 
 # First step: Write a command interpreter to manage your AirBnB objects.
-This is the first step towards building your first full web application: the AirBnB clone. 
+This is the first step towards building your first full web application: the AirBnB clone.
 
 This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
 
-# Console 
+# Console
 
 The console is a command line interpreter that permits management of the backend of HolbertonBnB.
 
@@ -15,7 +15,7 @@ The console is a command line interpreter that permits management of the backend
 * The HolbertonBnB console can be run both interactively and non-interactively. To run the console in non-interactive mode, pipe any command(s) into an execution of the file console.py at the command line.
 
 $ echo "help" | ./console.py
-(hbnb) 
+(hbnb)
 
 Documented commands (type help <topic>):
 
@@ -32,7 +32,7 @@ $ ./console.py
 * While running in interactive mode, the console displays a prompt for input:
 
 $ ./console.py
-(hbnb) 
+(hbnb)
 
 * To quit the console, enter the command quit, or input an EOF signal (ctrl-D).
 
@@ -91,5 +91,5 @@ e.g., For models/user.py, unit tests must be in: tests/test_models/test_user.py
 * All your functions (inside and outside a class) should have a documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')
 * We strongly encourage you to work together on test cases, so that you don’t miss any edge case
 
-# Testing 
+# Testing
 Unittests for the HolbertonBnB project are defined in the tests folder.
