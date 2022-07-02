@@ -7,6 +7,7 @@ from datetime import datetime
 import time
 import models
 
+
 class BaseModel:
     """
     class BaseModel that defines all common attributes/methods
