@@ -15,7 +15,7 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
-        """init"""
+        """initialize the class constructor"""
 
         if kwargs:
             dtf = "%Y-%m-%dT%H:%M:%S.%f"
