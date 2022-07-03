@@ -161,7 +161,7 @@ class HBNBCommand(cmd.Cmd):
 
                             key = cl_name+'.'+id_name
                             if key in objdict:
-                                setattr(objdict[key], at_name, at_val)
+                                setattr(objdict[key], at_name, tipo(at_val))
                                 storage.save()
 
     def default(self, arg):
