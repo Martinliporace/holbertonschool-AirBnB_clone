@@ -143,10 +143,10 @@ class HBNBCommand(cmd.Cmd):
                             print("** value missing **")
                         else:
                             arg_val = ''
-                            if args_len > 3:
+                            if args_len > 3 and ((args[3])[0]) == '"':
                                 for i in range(3, args_len):
                                     arg_val += (str(args[i])+' ')
-                                at_val = arg_val[:-1]
+                                at_val = arg_val[1:-2]
                             else:
                                 at_val = args[3]
                             key = cl_name+'.'+id_name
