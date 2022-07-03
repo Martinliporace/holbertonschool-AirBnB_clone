@@ -143,12 +143,22 @@ class HBNBCommand(cmd.Cmd):
                             print("** value missing **")
                         else:
                             arg_val = ''
+                            list_str = ['email', 'password', 'first_name',
+                                        'last_name', 'name', 'state_id',
+                                        'city_id', 'user_id,description',
+                                        'place_id', 'text']
+                            list_float = ['latitude', 'longitude']
+                            list_int = ['price_by_night', 'max_guest',
+                                        'number_bathrooms', 'number_rooms']
+                            list_list = ['amenity_ids']
+                            tipo = type(eval(args[3]))
+                            at_val = args[3]
+                            tipo = type(at_val)
                             if args_len > 3 and ((args[3])[0]) == '"':
                                 for i in range(3, args_len):
                                     arg_val += (str(args[i])+' ')
                                 at_val = arg_val[1:-2]
-                            else:
-                                at_val = args[3]
+
                             key = cl_name+'.'+id_name
                             if key in objdict:
                                 setattr(objdict[key], at_name, at_val)
