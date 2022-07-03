@@ -144,7 +144,7 @@ class HBNBCommand(cmd.Cmd):
                         else:
                             arg_val = ''
                             if args_len > 3:
-                                for i in range (3, args_len):
+                                for i in range(3, args_len):
                                     arg_val += (str(args[i])+' ')
                                 at_val = arg_val[:-1]
                             else:
