@@ -207,7 +207,6 @@ class HBNBCommand(cmd.Cmd):
             id = str(bet_par.split(",")[0])
             att_name = str(bet_par.split(",")[1])
             att_val = str(bet_par.split(",")[2])
-            print("apellido ", att_val)
             parameter = cl+' '+id+' '+att_name+' '+att_val
             bet_brack = str((arg.split("{")[1]).split("}")[0])
             tipo = type(bet_brack)
