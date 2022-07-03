@@ -17,7 +17,10 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """Defines the Holberton command interpreter"""
 
-    prompt = '(hbnb) '
+    if sys.stdin and sys.stdin.isatty():
+        prompt = '(hbnb) '
+    else:
+        prompt = '(hbnb)\n'
 
     __classes = {
             "BaseModel": BaseModel,
@@ -206,7 +209,18 @@ class HBNBCommand(cmd.Cmd):
             att_val = str(bet_par.split(",")[2])
             print("apellido ", att_val)
             parameter = cl+' '+id+' '+att_name+' '+att_val
-            HBNBCommand.do_update(self, parameter)
+            bet_brack = str((arg.split("{")[1]).split("}")[0])
+            tipo = type(bet_brack)
+            print("ARG: ", bet_brack)
+            print('TIPO: ', tipo)
+            dict = '{'+bet_brack+'}'
+            print('DICT: ', type(dict))
+            if tipo == 'dict':
+                for key, value in dict:
+                    parameter = cl+' '+id+' '+key+' '+value
+                    HBNBCommand.do_update(self, parameter)
+            else:
+                HBNBCommand.do_update(self, parameter)
 
         else:
             print("*** Unknown syntax: "+arg)
