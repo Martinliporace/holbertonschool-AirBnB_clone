@@ -142,7 +142,13 @@ class HBNBCommand(cmd.Cmd):
                         if args_len == 3:
                             print("** value missing **")
                         else:
-                            at_val = args[3]
+                            arg_val = ''
+                            if args_len > 3:
+                                for i in range (3, args_len):
+                                    arg_val += (str(args[i])+' ')
+                                at_val = arg_val[:-1]
+                            else:
+                                at_val = args[3]
                             key = cl_name+'.'+id_name
                             if key in objdict:
                                 setattr(objdict[key], at_name, at_val)
