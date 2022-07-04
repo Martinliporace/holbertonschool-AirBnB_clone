@@ -221,7 +221,7 @@ class HBNBCommand(cmd.Cmd):
                 print("DICT:", dict_aux)
                 if isinstance(dict_aux, dict) == True:
                     for key, value in dict_aux.items():
-                        par = cl+' '+id+' '+key.replace('"', "").replace("'", "")+' '+value
+                        par = cl+' '+id.strip('"')+' '+key.replace('"', "").replace("'", "")+' '+value
                         print("KEY:", key,"\nVALUE:", value)
                         print("PAR:", par)
                         HBNBCommand.do_update(self, str(par))
