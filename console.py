@@ -210,12 +210,9 @@ class HBNBCommand(cmd.Cmd):
             parameter = cl+' '+id+' '+att_name+' '+att_val
             bet_brack = str((arg.split("{")[1]).split("}")[0])
             tipo = type(bet_brack)
-            print("ARG: ", bet_brack)
-            print('TIPO: ', tipo)
-            dict = '{'+bet_brack+'}'
-            print('DICT: ', type(dict))
+            dict_aux = dict(sub.split(':') for sub in bet_brack.split(','))
             if tipo == 'dict':
-                for key, value in dict:
+                for key, value in dict(items):
                     parameter = cl+' '+id+' '+key+' '+value
                     HBNBCommand.do_update(self, parameter)
             else:
