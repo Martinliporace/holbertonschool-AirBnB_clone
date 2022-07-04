@@ -213,18 +213,16 @@ class HBNBCommand(cmd.Cmd):
             id = str(bet_par.split(",")[0])
             att_name = str(bet_par.split(",")[1])
             att_val = str(bet_par.split(",")[2])
-            parameter = cl+' '+id+' '+att_name+' '+att_val
+            par = cl+' '+id+' '+att_name+' '+att_val
             bet_brack = str((arg.split("{")[1]).split("}")[0])
             tipo = type(bet_brack)
             dict_aux = dict(sub.split(':') for sub in bet_brack.split(','))
-            print("BET BRACK: ", bet_brack)
-            print("DICT: ", dict_aux[0])
-            if tipo == 'dict':
-                for key, value in dict(items):
-                    parameter = cl+' '+id+' '+key+' '+value
-                    HBNBCommand.do_update(self, parameter)
+            if isinstance(dict_aux, dict) == True:
+                for key, value in dict_aux.items():
+                    par = cl+' '+id+' '+key.strip("\"'")+' '+value
+                    HBNBCommand.do_update(self, par)
             else:
-                HBNBCommand.do_update(self, parameter)
+                HBNBCommand.do_update(self, par)
 
         else:
             print("*** Unknown syntax: "+arg)
