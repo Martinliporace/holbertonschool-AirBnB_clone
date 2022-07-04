@@ -49,7 +49,9 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, arg):
-        """Create a new class instance and print its id"""
+        """Create a new class instance and print its id
+           ex: (hbnb) create User"""
+
         if len(arg) == 0:
             print("** class name missing **")
         elif arg not in HBNBCommand.__classes:
@@ -60,7 +62,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Display the string representation of
-        a class instance of a given id"""
+        a class instance of a given id
+        ex: (hbnb) show <id>"""
 
         if len(arg) == 0:
             print('** class name missing **')
@@ -80,7 +83,8 @@ class HBNBCommand(cmd.Cmd):
                 print(aux[key])
 
     def do_destroy(self, arg):
-        """Delete a class instance of a given id"""
+        """Delete a class instance of a given id
+           ex: (hbnb) destroy BaseModel 1234-1234-1234"""
 
         argl = arg.split()
         objdict = FileStorage.all(self)
@@ -98,7 +102,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Prints all string representation of all instances
-        based or not on the class name"""
+        based or not on the class name
+        ex: (hbnb) all Place"""
 
         objdict = FileStorage.all(self)
         obj_list = []
@@ -118,7 +123,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """Updates an instance based on the class name and
-        id by adding or updating attribute"""
+        id by adding or updating attribute
+        ex: (hbnb) update BaseModel 1234-1234-1234 email aibnb@mail.com"""
 
         args = arg.split()
         args_len = len(args)
@@ -211,6 +217,8 @@ class HBNBCommand(cmd.Cmd):
             bet_brack = str((arg.split("{")[1]).split("}")[0])
             tipo = type(bet_brack)
             dict_aux = dict(sub.split(':') for sub in bet_brack.split(','))
+            print("BET BRACK: ", bet_brack)
+            print("DICT: ", dict_aux[0])
             if tipo == 'dict':
                 for key, value in dict(items):
                     parameter = cl+' '+id+' '+key+' '+value
