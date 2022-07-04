@@ -212,7 +212,9 @@ class HBNBCommand(cmd.Cmd):
             bet_par = str((arg.split("(")[1]).split(")")[0])
             id = str(bet_par.split(",")[0])
             att_name = str(bet_par.split(",")[1])
-            att_val = str(bet_par.split(",")[2])
+            att_val = ''
+            if len(bet_par) == 3:
+                att_val = str(bet_par.split(",")[2])
             par = cl+' '+id.strip('"')+' '+att_name+' '+att_val
             if '{' in arg:
                 bet_brack = str((arg.split("{")[1]).split("}")[0])
