@@ -154,7 +154,6 @@ class TestState_save(unittest.TestCase):
 
 
 class TestState_to_dict(unittest.TestCase):
-        """test with descriptive name"""
     """Unittests for testing to_dict method of the State class."""
 
     def test_to_dict_type(self):
