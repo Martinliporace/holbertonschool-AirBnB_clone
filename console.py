@@ -220,12 +220,9 @@ class HBNBCommand(cmd.Cmd):
                 bet_brack = str((arg.split("{")[1]).split("}")[0])
                 tipo = type(bet_brack)
                 dict_aux = dict(sub.split(':') for sub in bet_brack.split(','))
-                print("DICT:", dict_aux)
-                if isinstance(dict_aux, dict) == True:
+                if isinstance(dict_aux, dict) is True:
                     for key, value in dict_aux.items():
                         par = cl+' '+id.strip('"')+' '+key.replace('"', "").replace("'", "")+' '+value
-                        print("KEY:", key,"\nVALUE:", value)
-                        print("PAR:", par)
                         HBNBCommand.do_update(self, str(par))
             else:
                 HBNBCommand.do_update(self, par)
