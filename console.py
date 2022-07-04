@@ -68,7 +68,7 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print('** class name missing **')
         args = arg.split()
-        if args[0] not in HBNBCommand.__classes:
+        if len(args) == 1 and args[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         elif len(args) == 1 and args[0] in HBNBCommand.__classes:
             print('** instance id missing **')
@@ -220,10 +220,10 @@ class HBNBCommand(cmd.Cmd):
             print("DICT:", dict_aux)
             if isinstance(dict_aux, dict) == True:
                 for key, value in dict_aux.items():
-                    par = cl+' '+id+' '+key[1:-1]+' '+value
+                    par = cl+' '+id+' '+key.replace('"', "").replace("'", "")+' '+value
                     print("KEY:", key,"\nVALUE:", value)
                     print("PAR:", par)
-                    HBNBCommand.do_update(self, par)
+                    HBNBCommand.do_update(self, str(par))
             else:
                 HBNBCommand.do_update(self, par)
 
