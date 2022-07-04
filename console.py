@@ -214,16 +214,17 @@ class HBNBCommand(cmd.Cmd):
             att_name = str(bet_par.split(",")[1])
             att_val = str(bet_par.split(",")[2])
             par = cl+' '+id+' '+att_name+' '+att_val
-            bet_brack = str((arg.split("{")[1]).split("}")[0])
-            tipo = type(bet_brack)
-            dict_aux = dict(sub.split(':') for sub in bet_brack.split(','))
-            print("DICT:", dict_aux)
-            if isinstance(dict_aux, dict) == True:
-                for key, value in dict_aux.items():
-                    par = cl+' '+id+' '+key.replace('"', "").replace("'", "")+' '+value
-                    print("KEY:", key,"\nVALUE:", value)
-                    print("PAR:", par)
-                    HBNBCommand.do_update(self, str(par))
+            if '{' in arg:
+                bet_brack = str((arg.split("{")[1]).split("}")[0])
+                tipo = type(bet_brack)
+                dict_aux = dict(sub.split(':') for sub in bet_brack.split(','))
+                print("DICT:", dict_aux)
+                if isinstance(dict_aux, dict) == True:
+                    for key, value in dict_aux.items():
+                        par = cl+' '+id+' '+key.replace('"', "").replace("'", "")+' '+value
+                        print("KEY:", key,"\nVALUE:", value)
+                        print("PAR:", par)
+                        HBNBCommand.do_update(self, str(par))
             else:
                 HBNBCommand.do_update(self, par)
 
