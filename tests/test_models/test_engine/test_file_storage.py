@@ -11,7 +11,8 @@ class TestFile_Storage(unittest.TestCase):
 
     def test_instances(self):
         """test with descriptive name"""
-        self.assertIsInstance(save(), FileStorage)
+        ins_name = FileStorage()
+        self.assertIsInstance(ins_name, FileStorage)
 
     if __name__ == '__main__':
         unittest.main()
