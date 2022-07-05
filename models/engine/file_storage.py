@@ -16,7 +16,11 @@ class FileStorage:
     """storage engine
     """
     __file_path = "file.json"
+    """string - path to the JSON file"""
     __objects = {}
+    """dictionary - empty but will store all objects by <class name>.id
+    (ex: to store a BaseModel object with id=12121212, the key will be
+    BaseModel.12121212)"""
 
     def all(self):
         """Return the dictionary __objects"""
