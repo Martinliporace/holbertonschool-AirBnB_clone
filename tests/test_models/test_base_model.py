@@ -229,5 +229,6 @@ class TestBaseModel_to_dict(unittest.TestCase):
         self.assertTrue(hasattr(bm, "updated_at"))
         self.assertEqual(type(bm.updated_at), datetime)
 
+
 if __name__ == "__main__":
     unittest.main()
