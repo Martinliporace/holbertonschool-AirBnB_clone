@@ -97,6 +97,11 @@ class TestBaseModel_instantiation(unittest.TestCase):
         self.assertEqual(bm.created_at, dt)
         self.assertEqual(bm.updated_at, dt)
 
+    def test_instances(self):
+        """test with descriptive name"""
+        ins_name = BaseModel()
+        self.assertIsInstance(ins_name, BaseModel)
+
 
 class TestBaseModel_save(unittest.TestCase):
     """Unittests for testing save method of the BaseModel class."""
