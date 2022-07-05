@@ -217,6 +217,17 @@ class TestBaseModel_to_dict(unittest.TestCase):
         with self.assertRaises(TypeError):
             bm.to_dict(None)
 
+    def test_created_at(self):
+        """test with descriptive name"""
+        bm = BaseModel()
+        self.assertTrue(hasattr(bm, "created_at"))
+        self.assertEqual(type(bm.created_at), datetime)
+
+    def test_updated_at(self):
+        """test with descriptive name"""
+        bm = BaseModel()
+        self.assertTrue(hasattr(bm, "updated_at"))
+        self.assertEqual(type(bm.updated_at), datetime)
 
 if __name__ == "__main__":
     unittest.main()
