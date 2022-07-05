@@ -16,6 +16,7 @@ class TestFile_Storage(unittest.TestCase):
 
     def test_att(self):
         fs = FileStorage()
+        fs.reload()
         self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))
         self.assertTrue(hasattr(FileStorage, "_FileStorage__objects"))
     if __name__ == '__main__':
